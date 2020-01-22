@@ -60,7 +60,7 @@ pub struct Data<T> {
 #[derive(Debug, Hash, PartialEq, PartialOrd, Eq, Ord)]
 pub enum Record {
     /// Header
-    S0(String),
+    S0(Vec<u8>),
     /// Data with 16-bit address
     S1(Data<Address16>),
     /// Data with 24-bit address

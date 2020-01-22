@@ -122,12 +122,7 @@ impl FromStr for Record {
         let rr = RawRecord::from_str(s)?;
 
         let r = match rr.t {
-            0 => Record::S0(
-                str::from_utf8(&rr.bytes[2..])
-                    .expect("Invalid UTF-8 bytes in S0 data")
-                    .trim_end_matches('\0')
-                    .into(),
-            ),
+            0 => Record::S0(rr.bytes),
             1 => {
                 if rr.bytes.len() < 2 {
                     return Err(Error::NotEnoughData);

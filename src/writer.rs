@@ -25,7 +25,7 @@ fn make_record(t: u8, address: &impl Address, data: &[u8]) -> String {
 impl Record {
     fn encode(&self) -> String {
         match self {
-            Record::S0(s) => make_record(0, &Address16(0x0000), &s.bytes().collect::<Vec<_>>()),
+            Record::S0(buf) => make_record(0, &Address16(0x0000), buf),
             Record::S1(Data { address, data }) => make_record(1, address, data),
             Record::S2(Data { address, data }) => make_record(2, address, data),
             Record::S3(Data { address, data }) => make_record(3, address, data),
